@@ -14,12 +14,6 @@ export class LearnerController {
     return createdLearner;
   }
 
-  @Put()
-  async update(@Body() learner: UpdateLearnerDto) {
-    const updatedLearner = await this.learnerService.update(learner as Learner);
-    return updatedLearner;
-  }
-
   @Get()
   async findAll(): Promise<Learner[]> {
     return this.learnerService.findAll();
@@ -29,5 +23,11 @@ export class LearnerController {
   @ApiImplicitParam({ name: 'id' })
   async findOne(@Param('id') id): Promise<Learner> {
     return this.learnerService.findOne(id);
+  }
+
+  @Put()
+  async update(@Body() learner: UpdateLearnerDto) {
+    const updatedLearner = await this.learnerService.update(learner as Learner);
+    return updatedLearner;
   }
 }

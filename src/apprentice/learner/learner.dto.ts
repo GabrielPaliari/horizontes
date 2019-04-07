@@ -1,4 +1,5 @@
 import { ApiModelProperty } from '@nestjs/swagger';
+import { Schooling } from '../schooling/schooling.entity';
 
 export class CreateLearnerDto {
   @ApiModelProperty()
@@ -6,9 +7,10 @@ export class CreateLearnerDto {
   @ApiModelProperty()
   readonly bornDate: string;
   @ApiModelProperty()
-  readonly scolarityId: number;
-  @ApiModelProperty()
   readonly literacyId: number;
+  @ApiModelProperty()
+  schoolingId?: number;
+  schooling?: Schooling;
 }
 
 // tslint:disable-next-line: max-classes-per-file
@@ -18,9 +20,10 @@ export class UpdateLearnerDto {
   @ApiModelProperty()
   readonly name?: string;
   @ApiModelProperty()
-  readonly bornDate?: string;
-  @ApiModelProperty()
-  readonly scolarityId?: number;
+  bornDate?: string;
   @ApiModelProperty()
   readonly literacyId?: number;
+  @ApiModelProperty()
+  schoolingId?: number;
+  schooling?: Schooling;
 }

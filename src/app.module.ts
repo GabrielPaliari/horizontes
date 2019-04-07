@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LearnerModule } from './learner/learner.module';
+import { ApprenticeModule } from './apprentice/apprentice.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
-    LearnerModule,
+    ApprenticeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
