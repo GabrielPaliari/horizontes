@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Schooling } from '../schooling/schooling.entity';
 import { SchoolingService } from '../schooling/schooling.service';
 
+// tslint:disable: no-string-literal
 @Injectable()
 export class LearnerService {
   constructor(
@@ -37,7 +38,6 @@ export class LearnerService {
     if (learner.bornDate) {
       learner.bornDate = moment(learner.bornDate).format('YYYY-MM-DD');
     }
-    // tslint:disable-next-line: no-string-literal
     learner['updated'] = moment().format('YYYY-MM-DD HH:mm:ss');
     let learnerToUpdate = await this.findOne(learner.id);
     learnerToUpdate = {
