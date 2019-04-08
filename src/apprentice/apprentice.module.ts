@@ -9,18 +9,34 @@ import { Schooling } from './schooling/schooling.entity';
 import { HostelEntryService } from './hostel-entry/hostel-entry.service';
 import { HostelEntryController } from './hostel-entry/hostel-entry.controller';
 import { HostelEntry } from './hostel-entry/hostel-entry.entity';
+import { WritingLevelController } from './writing-level/writing-level.controller';
+import { WritingLevelService } from './writing-level/writing-level.service';
+import { SubstanceService } from './substance/substance.service';
+import { SubstanceController } from './substance/substance.controller';
+import { WritingLevel } from './writing-level/writing-level.entity';
+import { Substance } from './substance/substance.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Learner, Schooling, HostelEntry])],
+    imports: [TypeOrmModule.forFeature([
+        Learner,
+        Schooling,
+        HostelEntry,
+        WritingLevel,
+        Substance,
+    ])],
     providers: [
         LearnerService,
         SchoolingService,
         HostelEntryService,
+        WritingLevelService,
+        SubstanceService,
     ],
     controllers: [
         LearnerController,
         SchoolingController,
         HostelEntryController,
+        WritingLevelController,
+        SubstanceController,
     ],
 })
 export class ApprenticeModule {}
