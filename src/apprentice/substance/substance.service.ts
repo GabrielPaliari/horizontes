@@ -1,36 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Substance } from './substance.entity';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
+import { CreateSubstanceDto } from './substance.dto';
 
 @Injectable()
 export class SubstanceService {
   constructor(
-    @InjectRepository(Schooling)
-    private readonly schoolingRepository: Repository<Schooling>,
+    @InjectRepository(Substance)
+    private readonly substanceRepository: Repository<Substance>,
   ) {}
 
-  async create(createSchoolingDto: CreateSchoolingDto): Promise<Schooling> {
-    const schooling = new Schooling(createSchoolingDto);
-    return await this.schoolingRepository.save(schooling);
+  async create(createSubstanceDto: CreateSubstanceDto): Promise<Substance> {
+    const substance = new Substance(createSubstanceDto);
+    return await this.substanceRepository.save(substance);
   }
 
-  async findAll(): Promise<Schooling[]> {
-    return await this.schoolingRepository.find();
+  async findAll(): Promise<Substance[]> {
+    return await this.substanceRepository.find();
   }
 
-  async findOne(id: number): Promise<Schooling> {
-    return await this.schoolingRepository.findOne(id);
+  async findOne(id: number): Promise<Substance> {
+    return await this.substanceRepository.findOne(id);
   }
 
-  async update(schooling: Schooling): Promise<UpdateResult> {
-    schooling.updated = moment().format('YYYY-MM-DD HH:mm:ss');
-    let schoolingToUpdate = await this.findOne(schooling.id);
-    schoolingToUpdate = {
-      ...schoolingToUpdate,
-      ...schooling,
+  async update(substance: Substance): Promise<UpdateResult> {
+    let substanceToUpdate = await this.findOne(substance.id);
+    substanceToUpdate = {
+      ...substanceToUpdate,
+      ...substance,
     };
-    return await this.schoolingRepository.update(schooling.id, schooling);
+    return await this.substanceRepository.update(substance.id, substance);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return await this.schoolingRepository.delete(id);
+    return await this.substanceRepository.delete(id);
   }
 }

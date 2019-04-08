@@ -1,36 +1,40 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
+import { CreateWritingLevelDto } from './writing-level.dto';
+import moment = require('moment');
+import { WritingLevel } from './writing-level.entity';
 
 @Injectable()
 export class WritingLevelService {
   constructor(
-    @InjectRepository(Schooling)
-    private readonly schoolingRepository: Repository<Schooling>,
+    @InjectRepository(WritingLevel)
+    private readonly writingLevelRepository: Repository<WritingLevel>,
   ) {}
 
-  async create(createSchoolingDto: CreateSchoolingDto): Promise<Schooling> {
-    const schooling = new Schooling(createSchoolingDto);
-    return await this.schoolingRepository.save(schooling);
+  async create(createWritingLevelDto: CreateWritingLevelDto): Promise<WritingLevel> {
+    const writingLevel = new WritingLevel(createWritingLevelDto);
+    return await this.writingLevelRepository.save(writingLevel);
   }
 
-  async findAll(): Promise<Schooling[]> {
-    return await this.schoolingRepository.find();
+  async findAll(): Promise<WritingLevel[]> {
+    return await this.writingLevelRepository.find();
   }
 
-  async findOne(id: number): Promise<Schooling> {
-    return await this.schoolingRepository.findOne(id);
+  async findOne(id: number): Promise<WritingLevel> {
+    return await this.writingLevelRepository.findOne(id);
   }
 
-  async update(schooling: Schooling): Promise<UpdateResult> {
-    schooling.updated = moment().format('YYYY-MM-DD HH:mm:ss');
-    let schoolingToUpdate = await this.findOne(schooling.id);
-    schoolingToUpdate = {
-      ...schoolingToUpdate,
-      ...schooling,
+  async update(writingLevel: WritingLevel): Promise<UpdateResult> {
+    let writingLevelToUpdate = await this.findOne(writingLevel.id);
+    writingLevelToUpdate = {
+      ...writingLevelToUpdate,
+      ...writingLevel,
     };
-    return await this.schoolingRepository.update(schooling.id, schooling);
+    return await this.writingLevelRepository.update(writingLevel.id, writingLevel);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return await this.schoolingRepository.delete(id);
+    return await this.writingLevelRepository.delete(id);
   }
 }

@@ -1,33 +1,33 @@
-import { Controller, Body, Post, Get, Put, Delete, Param } from '@nestjs/common';
-import { WritingLevelService } from '../writing-level/writing-level.service';
-import { CreateWritingLevelDto, UpdateWritingLevelDto } from '../writing-level/writing-level.dto';
-import { WritingLevel } from '../writing-level/writing-level.entity';
+import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common';
+import { SubstanceService } from './substance.service';
 import { ApiImplicitParam } from '@nestjs/swagger';
+import { CreateSubstanceDto, UpdateSubstanceDto } from './substance.dto';
+import { Substance } from './substance.entity';
 
 @Controller('substance')
 export class SubstanceController {
-    constructor(private readonly swritingLevelService: WritingLevelService) {}
+    constructor(private readonly substanceService: SubstanceService) {}
 
     @Post()
-    async create(@Body() swritingLevel: CreateWritingLevelDto) {
-      const createdWritingLevel = await this.swritingLevelService.create(swritingLevel);
-      return createdWritingLevel;
+    async create(@Body() substance: CreateSubstanceDto) {
+      const createdSubstance = await this.substanceService.create(substance);
+      return createdSubstance;
     }
 
     @Get()
-    async findAll(): Promise<WritingLevel[]> {
-      return this.swritingLevelService.findAll();
+    async findAll(): Promise<Substance[]> {
+      return this.substanceService.findAll();
     }
 
     @Put()
-    async update(@Body() swritingLevel: UpdateWritingLevelDto) {
-      const updatedWritingLevel = await this.swritingLevelService.update(swritingLevel as WritingLevel);
-      return updatedWritingLevel;
+    async update(@Body() substance: UpdateSubstanceDto) {
+      const updatedSubstance = await this.substanceService.update(substance as Substance);
+      return updatedSubstance;
     }
 
     @Delete(':id')
     @ApiImplicitParam({ name: 'id' })
     async delete(@Param('id') id) {
-        return this.swritingLevelService.delete(id);
+        return this.substanceService.delete(id);
     }
 }
