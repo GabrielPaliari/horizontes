@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, JoinTable, OneToMany } from 'typeorm';
 import { CreateLearnerDto } from './learner.dto';
 import * as moment from 'moment';
 import { Schooling } from '../schooling/schooling.entity';
+import { HostelEntry } from '../hostel-entry/hostel-entry.entity';
 
 @Entity()
 export class Learner {
@@ -29,6 +30,10 @@ export class Learner {
   @ManyToOne(type => Schooling)
   @JoinColumn()
   schooling: Schooling;
+
+  @OneToMany(type => HostelEntry, hostelEntry => hostelEntry.learner)
+  @JoinTable()
+  hostelEntries: HostelEntry[];
 
   constructor(learner?: CreateLearnerDto) {
     if (learner) {

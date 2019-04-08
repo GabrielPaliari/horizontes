@@ -22,11 +22,11 @@ export class LearnerService {
   }
 
   async findAll(): Promise<Learner[]> {
-    return await this.learnerRepository.find({ relations: ['schooling']});
+    return await this.learnerRepository.find();
   }
 
   async findOne(id: number): Promise<Learner> {
-    return await this.learnerRepository.findOne(id, { relations: ['schooling']});
+    return await this.learnerRepository.findOne(id, { relations: ['schooling', 'hostelEntries']});
   }
 
   async update(updateLearnerDto: UpdateLearnerDto): Promise<UpdateResult> {
