@@ -2,9 +2,10 @@ import { Controller, Post, Header, Body, Get, Param, Put } from '@nestjs/common'
 import { LearnerService } from './learner.service';
 import { Learner } from './learner.entity';
 import { CreateLearnerDto, UpdateLearnerDto } from './learner.dto';
-import { ApiImplicitParam } from '@nestjs/swagger';
+import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
 
 @Controller('learner')
+@ApiUseTags('Aprendiz')
 export class LearnerController {
   constructor(private readonly learnerService: LearnerService) {}
 

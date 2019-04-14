@@ -2,9 +2,10 @@ import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common'
 import { WritingLevelService } from './writing-level.service';
 import { CreateWritingLevelDto, UpdateWritingLevelDto } from './writing-level.dto';
 import { WritingLevel } from './writing-level.entity';
-import { ApiImplicitParam } from '@nestjs/swagger';
+import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
 
 @Controller('writing-level')
+@ApiUseTags('Nível de escrita')
 export class WritingLevelController {
     constructor(private readonly writingLevelService: WritingLevelService) {}
 

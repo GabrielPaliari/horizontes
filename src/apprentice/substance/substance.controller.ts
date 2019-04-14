@@ -1,10 +1,11 @@
 import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common';
 import { SubstanceService } from './substance.service';
-import { ApiImplicitParam } from '@nestjs/swagger';
+import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
 import { CreateSubstanceDto, UpdateSubstanceDto } from './substance.dto';
 import { Substance } from './substance.entity';
 
 @Controller('substance')
+@ApiUseTags('Substâncias')
 export class SubstanceController {
     constructor(private readonly substanceService: SubstanceService) {}
 

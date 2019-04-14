@@ -1,10 +1,11 @@
 import { Controller, Post, Body, Put, Get, Param, Delete } from '@nestjs/common';
-import { ApiImplicitParam } from '@nestjs/swagger';
+import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
 import { SchoolingService } from './schooling.service';
 import { CreateSchoolingDto, UpdateSchoolingDto } from './schooling.dto';
 import { Schooling } from './schooling.entity';
 
 @Controller('schooling')
+@ApiUseTags('Nível de escolaridade')
 export class SchoolingController {
     constructor(private readonly schoolingService: SchoolingService) {}
 

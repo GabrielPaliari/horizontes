@@ -9,7 +9,6 @@ async function bootstrap() {
     .setTitle('Horizontes do Saber')
     .setDescription('Descrição da API do projeto Horizontes do Saber')
     .setVersion('1.0')
-    .addTag('horizontes')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

@@ -2,9 +2,10 @@ import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common'
 import { HostelEntryService } from './hostel-entry.service';
 import { CreateHostelEntryDto, UpdateHostelEntryDto } from './hostel-entry.dto';
 import { HostelEntry } from './hostel-entry.entity';
-import { ApiImplicitParam } from '@nestjs/swagger';
+import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
 
 @Controller('hostel-entry')
+@ApiUseTags('Entrada/Saída')
 export class HostelEntryController {
     constructor(private readonly hostelEntryService: HostelEntryService) {}
 

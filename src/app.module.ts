@@ -8,8 +8,6 @@ import { ApprenticeModule } from './apprentice/apprentice.module';
   imports: [
     TypeOrmModule.forRoot(),
     ApprenticeModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  ]
 })
 export class AppModule {}
