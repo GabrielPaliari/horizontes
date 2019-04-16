@@ -1,8 +1,9 @@
 import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common';
 import { SubstanceService } from './substance.service';
 import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
-import { CreateSubstanceDto, UpdateSubstanceDto } from './substance.dto';
+import { CreateSubstanceDto, UpdateSubstanceDto, CreateLearnerSubstanceDto, UpdateLearnerSubstanceDto } from './substance.dto';
 import { Substance } from './substance.entity';
+import { LearnerSubstance } from './learner-substance.entity';
 
 @Controller('substance')
 @ApiUseTags('Substâncias')
@@ -30,5 +31,28 @@ export class SubstanceController {
     @ApiImplicitParam({ name: 'id' })
     async delete(@Param('id') id) {
         return this.substanceService.delete(id);
+    }
+
+    @Post('learner')
+    async createLearnerSubstance(@Body() learnerSubstance: CreateLearnerSubstanceDto) {
+      const createdSubstance = await this.substanceService.createLearnerSubstance(learnerSubstance);
+      return createdSubstance;
+    }
+
+    @Get('learner')
+    async findAllLearnerSubstance(): Promise<LearnerSubstance[]> {
+      return this.substanceService.findAllLearnerSubstance();
+    }
+
+    @Put('learner')
+    async updateLearnerSubstance(@Body() learnerSubstance: UpdateLearnerSubstanceDto) {
+      const updatedSubstance = await this.substanceService.updateLearnerSubstance(learnerSubstance);
+      return updatedSubstance;
+    }
+
+    @Delete('learner/:id')
+    @ApiImplicitParam({ name: 'id' })
+    async deleteLearnerSubstance(@Param('id') id) {
+        return this.substanceService.deleteLearnerSubstance(id);
     }
 }

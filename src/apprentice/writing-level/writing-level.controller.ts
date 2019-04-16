@@ -33,21 +33,27 @@ export class WritingLevelController {
         return this.writingLevelService.delete(id);
     }
 
-    @Post('learner-writing')
+    @Post('learner')
     async createLearnerWritingLevel(@Body() writingLevel: CreateLearnerWritingLevelDto) {
       const learnerWriting = await this.writingLevelService.createLearnerWritingLevel(writingLevel);
 
       return learnerWriting;
     }
 
-    @Get('learner-writing')
+    @Get('learner')
     async findAllLearnerWritingLevel(): Promise<LearnerWritingLevel[]> {
       return this.writingLevelService.findAllLearnerWritingLevel();
     }
 
-    @Put('learner-writing')
+    @Put('learner')
     async updateLearnerWritingLevel(@Body() learnerWritingLevel: UpdateLearnerWritingLevelDto) {
       const updatedWritingLevel = await this.writingLevelService.updateLearnerWritingLevel(learnerWritingLevel);
       return updatedWritingLevel;
+    }
+
+    @Delete(':id')
+    @ApiImplicitParam({ name: 'id' })
+    async deleteLearnerWritingLevel(@Param('id') id) {
+        return this.writingLevelService.deleteLearnerWritingLevel(id);
     }
 }

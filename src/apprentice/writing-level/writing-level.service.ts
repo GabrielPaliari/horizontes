@@ -6,7 +6,6 @@ import * as moment from 'moment';
 import { WritingLevel } from './writing-level.entity';
 import { LearnerWritingLevel } from './learner-writing-level.entity';
 
-
 @Injectable()
 export class WritingLevelService {
   constructor(
@@ -58,6 +57,10 @@ export class WritingLevelService {
       learnerWritingLevel.date = this.formatDate(learnerWritingLevel.date);
     }
     return await this.learnerWritingLevelRepository.update(learnerWritingLevel.id, learnerWritingLevel);
+  }
+
+  async deleteLearnerWritingLevel(id: number): Promise<DeleteResult> {
+    return await this.learnerWritingLevelRepository.delete(id);
   }
 
   formatDate(date?: string) {
