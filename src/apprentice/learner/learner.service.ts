@@ -27,7 +27,7 @@ export class LearnerService {
   }
 
   async findOne(id: number): Promise<Learner> {
-    return await this.learnerRepository.findOne(id, { relations: ['schooling', 'hostelEntries']});
+    return await this.learnerRepository.findOne(id, { relations: ['schooling', 'hostelEntries', 'writingLevel']});
   }
 
   async update(updateLearnerDto: UpdateLearnerDto): Promise<UpdateResult> {

@@ -3,6 +3,7 @@ import { CreateLearnerDto } from './learner.dto';
 import * as moment from 'moment';
 import { Schooling } from '../schooling/schooling.entity';
 import { HostelEntry } from '../hostel-entry/hostel-entry.entity';
+import { LearnerWritingLevel } from '../writing-level/learner-writing-level.entity';
 
 @Entity()
 export class Learner {
@@ -30,6 +31,9 @@ export class Learner {
   @ManyToOne(type => Schooling)
   @JoinColumn()
   schooling: Schooling;
+
+  @ManyToOne(type => LearnerWritingLevel)
+  writingLevel: LearnerWritingLevel;
 
   @OneToMany(type => HostelEntry, hostelEntry => hostelEntry.learner)
   @JoinTable()

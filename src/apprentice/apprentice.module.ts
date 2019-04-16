@@ -15,6 +15,7 @@ import { SubstanceService } from './substance/substance.service';
 import { SubstanceController } from './substance/substance.controller';
 import { WritingLevel } from './writing-level/writing-level.entity';
 import { Substance } from './substance/substance.entity';
+import { LearnerWritingLevel } from './writing-level/learner-writing-level.entity';
 
 @Module({
     imports: [TypeOrmModule.forFeature([
@@ -22,6 +23,7 @@ import { Substance } from './substance/substance.entity';
         Schooling,
         HostelEntry,
         WritingLevel,
+        LearnerWritingLevel,
         Substance,
     ])],
     providers: [

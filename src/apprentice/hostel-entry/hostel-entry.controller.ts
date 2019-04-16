@@ -5,7 +5,7 @@ import { HostelEntry } from './hostel-entry.entity';
 import { ApiImplicitParam, ApiUseTags } from '@nestjs/swagger';
 
 @Controller('hostel-entry')
-@ApiUseTags('Entrada/Saída')
+@ApiUseTags('Check-in/Check-out')
 export class HostelEntryController {
     constructor(private readonly hostelEntryService: HostelEntryService) {}
 
